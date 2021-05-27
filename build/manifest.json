@@ -1,0 +1,11 @@
+{
+    "name": "Coding Assignment Github Jobs",
+    "short_name": "Coding Assignment Github Jobs",
+    "description": "App displaying all jobs from jobs.github.com",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f5f5f5",
+    "theme_color": "#5662E1",
+    "orientation": "portrait-primary"
+   
+}
