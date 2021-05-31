@@ -9,7 +9,7 @@ const Home = () => {
     const [anotherPage, setAnotherPage] = useState(2);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const [scroll, setScroll] = useState(window.pageYOffset);
-
+     
     function useWindowSize() {
         useEffect(() => {
             function updateScrollHeight() {
@@ -18,16 +18,19 @@ const Home = () => {
             }
             window.addEventListener('scroll', updateScrollHeight)
             updateScrollHeight()
+            // clean up function on unmount
             return () => window.removeEventListener('scroll', updateScrollHeight)
         }, [windowHeight, scroll])
 
         return scroll, windowHeight
     }
 
+
     useEffect(() => {
         setAnotherPage(2)
     }, [resultLength < 50])
 
+    // button click loadmore 
     const loadMore = () => {
         setAnotherPage(anotherPage + 1)
 
@@ -38,7 +41,7 @@ const Home = () => {
         fetchGithubAPI(endpoint)       
         sessionStorage.setItem('search URL', endpoint)
     }
-
+    // current size of the browser window
     useWindowSize()
 
     return (
@@ -50,6 +53,7 @@ const Home = () => {
                 <>
                 <JobBoard>
                     {jobs.map(job => (
+                       
                         <JobThumbnail 
                             key={job.id}
                             id={job.id}
@@ -62,11 +66,14 @@ const Home = () => {
                         />
                     ))}
                 </JobBoard>
-
+               
+                 {/* if alredy more than 50job then dont show load more button */}
                 {resultLength >= 50 && !mobileFilter && (
                     <button className="load__more__btn btn" onClick={loadMore}>Load More</button>
                 )}
 
+                {/* go to upwards location up arrow */}
+                
                 {scroll >= (windowHeight * 2) && !mobileFilter && (
                     <button 
                         className="back-to-top"

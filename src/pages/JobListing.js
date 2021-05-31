@@ -4,7 +4,7 @@ import { Error } from '../components';
 import { timeDifference } from '../helpers/timeDiffererence';
 
 const JobListing = ({ match }) => {
-    const { data: {jobs}, loading, error } = useContext(JobsContext);
+    const { data: {jobs}, error } = useContext(JobsContext);
     const [listing, setListing] = useState();
     const colors = ['#8d47ff', '#235cdf', '#daa278', '#68ab97', '#bb4643', '#e7de63'];
     const [color] = useState(colors[Math.floor(Math.random() * colors.length)]);
@@ -63,13 +63,14 @@ const JobListing = ({ match }) => {
                         </div>
                         <a className="body__heading__redirect btn" href={applyNowLink(listing.how_to_apply)} target="_blank" rel="noopener noreferrer">Apply Now</a>
                     </div>
+                    {/* dangerouslySetInnerHTML is React’s replacement for using innerHTML in the browser DOM. */}
                     <div className="body__main" dangerouslySetInnerHTML={{__html: listing.description}} />
                 </div>
                 <div className="job__listing__cta">
                     <h3 className="cta__heading">How to Apply</h3><br />
                     <p className="cta__body" dangerouslySetInnerHTML={{__html: listing.how_to_apply}} />
-                </div>
-                <footer className="job__listing__footer">
+                </div> */}
+               <footer className="job__listing__footer">
                     <div className="footer__textbox">
                         <h4 className="footer__textbox__position">{listing.title}</h4>
                         <small className="footer__textbox__company">{listing.company}</small>

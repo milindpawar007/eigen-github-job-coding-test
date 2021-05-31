@@ -9,7 +9,9 @@ const Header = () => {
     const { BASE_URL, fetchGithubAPI, lightTheme, setLightTheme, setSearchInput, setLocationInput, setFullTime, setSearchURL, mobileFilter } = useContext(JobsContext);
     const htmlTag = document.body.parentElement;
     const background = 'bg-pattern-header.svg';
-
+      
+    // run only once give empty array
+    // adding into local storage to check the themes
     useEffect(() => {
         if (!localStorage.getItem('theme')) {
             setLightTheme(true)
@@ -20,6 +22,7 @@ const Header = () => {
         }
     }, [])
 
+    // to change the theme 
     const switchTheme = () => {
         if (!lightTheme) {
             localStorage.setItem('theme', 'light')
@@ -42,6 +45,7 @@ const Header = () => {
     }
 
     return (
+        
         <div className={`header ${mobileFilter ? 'blur' : ''}`}>
             <div className="header__backgrounds">
                 <img className="background__desktop" src={require(`../images/desktop/` + background)} alt="" />

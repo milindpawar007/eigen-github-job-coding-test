@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { JobsContext } from '../App';
 import github_red from '../images/github-red.svg';
+import error_logo from '../images/error.svg'
 
 const Error = ({ noJobs, apiError }) => {
     const { error } = useContext(JobsContext)
@@ -10,7 +11,8 @@ const Error = ({ noJobs, apiError }) => {
 
     return (
         <div className="error">
-            <img src={github_red} alt="Github logo for error" />
+            {/* <img src={github_red} alt="Github logo for error" /> */}
+            <img src={error_logo} alt=" error" />
             <div className={`error__msg ${apiError ? 'visible' : 'hidden'}`}>
                 <h3>{error.statusCode}</h3>
                 <p>{error.statusText}</p>

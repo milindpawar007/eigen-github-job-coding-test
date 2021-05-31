@@ -8,11 +8,11 @@ const SearchBar = () => {
     
     const handleSearch = (e) => {
         e.preventDefault();
-
+        
         let search = searchInput.trim() !== ''
             ?   `description=${searchInput}`.replace(/ /g, '+')
             :   '';
-
+           
         let location = locationInput.trim() !== ''
             ?  `location=${locationInput}`.replace(/ /g, '+')
             :   '';
@@ -20,7 +20,7 @@ const SearchBar = () => {
         let full = fullTime ? `full_time=on` : ''
 
         let searchEndpoint = `${BASE_URL}.json?${[search, location, full].filter(Boolean).join('&')}`
-
+      
         if (search || location || full) {
             setSearchURL(searchEndpoint)
             fetchGithubAPI(searchEndpoint)
