@@ -12,7 +12,8 @@ const Error = ({ noJobs, apiError }) => {
     return (
         <div className="error">
             {/* <img src={github_red} alt="Github logo for error" /> */}
-            <img src={error_logo} alt=" error" />
+            {!noJobs?  <img src={error_logo} alt=" error 404" />:''}
+          
             <div className={`error__msg ${apiError ? 'visible' : 'hidden'}`}>
                 <h3>{error.statusCode}</h3>
                 <p>{error.statusText}</p>

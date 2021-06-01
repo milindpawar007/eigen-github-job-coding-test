@@ -1,13 +1,27 @@
 import React, { useContext } from 'react';
 import { JobsContext } from '../App';
-
-
-const JobBoard = ({ children }) => {
+import { JobThumbnail } from '../components';
+import moment from 'moment'
+const JobBoard = ({ jobs }) => {
     const { mobileFilter } = useContext(JobsContext);
     
     return (
         <section className={`job__board ${mobileFilter ? 'blur' : ''}`}>
-            { children }
+           
+           {jobs.map(job => (
+                       
+                       <JobThumbnail 
+                           key={job.id}
+                           id={job.id}
+                           logo={job.company_logo}
+                           date={moment(new Date(job.created_at)).fromNow()}
+                           lengthTerm={job.type}
+                           company={job.company}
+                           jobTitle={job.title}
+                           location={job.location}
+                       />
+                   ))
+            }
                         
         </section>
     )

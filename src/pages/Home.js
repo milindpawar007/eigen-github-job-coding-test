@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { JobsContext } from '../App';
-import { JobBoard, JobThumbnail, SearchBar, Error } from '../components';
-import { timeDifference } from '../helpers/timeDiffererence';
+import { JobBoard, SearchBar, Error } from '../components';
 import arrow from '../images/up-arrow.svg';
 
 const Home = () => {
@@ -51,22 +50,8 @@ const Home = () => {
             {!error.error && !loading && searchURL && jobs.length === 0 && (<Error noJobs />)}
             {jobs && !error.error && (
                 <>
-                <JobBoard>
-                    {jobs.map(job => (
-                       
-                        <JobThumbnail 
-                            key={job.id}
-                            id={job.id}
-                            logo={job.company_logo}
-                            date={timeDifference(Date.now(), Date.parse(job.created_at))}
-                            lengthTerm={job.type}
-                            company={job.company}
-                            jobTitle={job.title}
-                            location={job.location}
-                        />
-                    ))}
-                </JobBoard>
-               
+                <JobBoard jobs={jobs} />
+                                  
                  {/* if alredy more than 50job then dont show load more button */}
                 {resultLength >= 50 && !mobileFilter && (
                     <button className="load__more__btn btn" onClick={loadMore}>Load More</button>
@@ -75,10 +60,7 @@ const Home = () => {
                 {/* go to upwards location up arrow */}
                 
                 {scroll >= (windowHeight * 2) && !mobileFilter && (
-                    <button 
-                        className="back-to-top"
-                        aria-label="Button to scroll back to top of page"
-                        onClick={() => window.scrollTo(0, 0)}>
+                    <button   className="back-to-top"   aria-label="Button to scroll back to top of page"  onClick={() => window.scrollTo(0, 0)}>
                             <img src={arrow} alt="" />
                     </button>
                 )}
